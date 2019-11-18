@@ -1,0 +1,22 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lifecheq</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="stylesheet" href="{% static 'lifecheq_app/style.css' %}">
+    
+    {% block head %}
+    {% endblock head %}
+</head>
+<body>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

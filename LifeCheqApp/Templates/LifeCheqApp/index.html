@@ -1,0 +1,23 @@
+{% extends "LifeCheqApp/base.html" %}
+{% load static %}
+{% load humanize %}
+{{ floatvalue|floatformat:2|intcomma }}
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <img src="{% static "LifeCheqApp/lifecheq.svg" %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+    <h1 class="display-3">LifeCheq Loan Calculator</h1>
+    <hr class="my-4">
+    <p class="lead">This tool calculates the monthly payment required to service a loan.</p>
+    <p class="lead">The required inputs are the purchase price of the home, the deposit paid as well as interest rate and term of the loan. </p>
+    <hr class="my-4">
+    <p class="lead">
+      <a id="overwrite-btn" class="btn btn-primary btn-lg" href="{% url 'LifeCheqApp:input' %}" role="button">Get Quote</a>
+    </p>
+  </div>
+</div>
+
+{% endblock content %}
+
+

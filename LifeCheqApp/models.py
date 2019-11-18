@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import post_save
 
 
 class OutModel(models.Model):
@@ -13,7 +14,7 @@ class OutModel(models.Model):
 
 class InModel(models.Model):
     objects = models.Manager()
-    loan_number = models.IntegerField(primary_key=True)
+    loan_number = models.AutoField(primary_key=True)
     name_of_loan = models.TextField(max_length=150)
     price = models.FloatField()
     deposit = models.FloatField()
@@ -22,28 +23,36 @@ class InModel(models.Model):
     principal = models.FloatField()
     payment = models.FloatField()
 
-    
+
     @property
     def calculate_payment(self):
         payment = (self.interest_rate/100/12) / (1 - (1+self.interest_rate/100/12)**-(self.term*12)) * (self.principal)
         return payment
-    
-    @property
-    def amortisation_dictionary(self, *args, **kwargs):
 
-        begin_balance = self.principal
 
-        for period in range(1, int(self.term*12+1)):
+    def save(self, *args, **kwargs):
+        self.principal = self.price - self.deposit
+        self.payment = self.calculate_payment
+        super(InModel, self).save(*args, **kwargs)
 
-            interest_period = (self.interest_rate/100/12)* begin_balance
-            principal_period = self.payment - interest_period
+
+def create_model(sender, instance, *args, **kwargs):
+
+    def amortisation_dictionary(instance):
+
+        begin_balance = instance.principal
+
+        for period in range(1, int(instance.term*12+1)):
+
+            interest_period = (instance.interest_rate/100/12)* begin_balance
+            principal_period = instance.payment - interest_period
             end_balance = begin_balance - principal_period
 
             yield  {
-                    'Loan Number': self.pk,
+                    'Loan Number': instance.loan_number,
                     'Period': period,
                     'Begin Balance': begin_balance,
-                    'Payment': self.payment,
+                    'Payment': instance.payment,
                     'Principal': principal_period,
                     'Interest': interest_period,
                     'End Balance': end_balance,
@@ -51,21 +60,16 @@ class InModel(models.Model):
 
             begin_balance = end_balance
 
+    for record in amortisation_dictionary(instance):
+        OutModel.objects.create (
+            loan_number=record['Loan Number'],
+            period=record['Period'],
+            begin_value=record['Begin Balance'],
+            payment_period=record['Payment'],
+            principal_period=record['Principal'],
+            interest_period=record['Interest'],
+            end_value=record['End Balance']
+        )
 
-    def save(self, *args, **kwargs):
-        
-        self.principal = self.price - self.deposit
-        
-        self.payment = self.calculate_payment
-        
-        for record in self.amortisation_dictionary:
-            OutModel.objects.create(
-                loan_number=record['Loan Number'],
-                period=record['Period'],
-                begin_value=record['Begin Balance'],
-                payment=record['Payment'],
-                principal_period=record['Principal'],
-                interest_period=record['Interest'],
-                end_value=record['End Balance'])
 
-        super(InModel, self).save(*args, **kwargs)
+post_save.connect(create_model, sender=InModel)

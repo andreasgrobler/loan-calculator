@@ -1,0 +1,18 @@
+#overwrite-btn {
+   background-color : rgb(244, 88,77);
+   border: rgb(244, 88,77);
+}
+
+.asteriskField {
+   display: none;
+}
+
+td #result {
+   color: rgb(255, 255, 255);
+   background-color: rgb(244, 88,77);
+}
+
+#result {
+   color: rgb(244, 88,77);
+   
+}
