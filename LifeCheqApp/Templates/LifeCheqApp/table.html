@@ -1,4 +1,4 @@
-{% extends "lifecheq_app/base.html" %}
+{% extends "LifeCheqApp/base.html" %}
 {% load humanize %}
 {{ floatvalue|floatformat:2 }}
 
@@ -29,17 +29,17 @@
             <td>Interest paid</th>
             <td>Principal paid</th>
             <td>Balance at End</td>
-          </tr>
-          {% for object in objects %}  
+          </tr> 
+        {% for object in objects %}
           <tr>
-            <td>{{ object.0|floatformat:0  }}</td>
-            <td>{{ object.1|floatformat:2  }}</td>
-            <td>{{ object.2|floatformat:2  }}</td>
-            <td>{{ object.3|floatformat:2  }}</td>
-            <td>{{ object.4|floatformat:2  }}</td>
-            <td>{{ object.5|floatformat:2  }}</td>
+            <td>{{ object.period|floatformat:0  }}</td>
+            <td>{{ object.begin_value|floatformat:2  }}</td>
+            <td>{{ object.payment_period|floatformat:2  }}</td>
+            <td>{{ object.principal_period|floatformat:2  }}</td>
+            <td>{{ object.interest_period|floatformat:2  }}</td>
+            <td>{{ object.end_value|floatformat:2  }}</td>          
           </tr>
-          {% endfor %}
+        {% endfor %}   
         </tbody>
       </table>
     </div>

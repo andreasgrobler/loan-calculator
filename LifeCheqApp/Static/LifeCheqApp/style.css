@@ -1,5 +1,5 @@
-#overwrite-btn {
-   background-color : rgb(244, 88,77);
+.btn > #overwrite-btn {
+   background-color : rgba(244, 88,77,0.8);
    border: rgb(244, 88,77);
 }
 

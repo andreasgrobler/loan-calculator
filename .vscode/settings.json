@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "LifeCheq-Env/bin/python"
+    "python.pythonPath": "LifeCheq-Env/bin/python",
+    "python.formatting.autopep8Path": "/Users/andreas/Local Repos/LifeCheq/LifeCheq-Env/bin/autopep8"
 }

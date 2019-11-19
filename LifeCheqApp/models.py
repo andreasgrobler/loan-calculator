@@ -2,9 +2,10 @@ from django.db import models
 from django.db.models.signals import post_save
 
 
-class OutModel(models.Model):
+class Output(models.Model):
     objects = models.Manager()
     loan_number = models.IntegerField()
+    date_added = models.DateField(auto_now_add=True)
     period = models.IntegerField()
     begin_value = models.FloatField()
     payment_period = models.FloatField()
@@ -12,10 +13,12 @@ class OutModel(models.Model):
     principal_period = models.FloatField()
     end_value = models.FloatField()
 
-class InModel(models.Model):
+
+class Input(models.Model):
     objects = models.Manager()
     loan_number = models.AutoField(primary_key=True)
     name_of_loan = models.TextField(max_length=150)
+    date_added = models.DateField(auto_now_add=True)
     price = models.FloatField()
     deposit = models.FloatField()
     term = models.FloatField()
@@ -33,10 +36,10 @@ class InModel(models.Model):
     def save(self, *args, **kwargs):
         self.principal = self.price - self.deposit
         self.payment = self.calculate_payment
-        super(InModel, self).save(*args, **kwargs)
+        super(Input, self).save(*args, **kwargs)
 
 
-def create_model(sender, instance, *args, **kwargs):
+def create_output(sender, instance, *args, **kwargs):
 
     def amortisation_dictionary(instance):
 
@@ -61,7 +64,7 @@ def create_model(sender, instance, *args, **kwargs):
             begin_balance = end_balance
 
     for record in amortisation_dictionary(instance):
-        OutModel.objects.create (
+        Output.objects.create (
             loan_number=record['Loan Number'],
             period=record['Period'],
             begin_value=record['Begin Balance'],
@@ -72,4 +75,4 @@ def create_model(sender, instance, *args, **kwargs):
         )
 
 
-post_save.connect(create_model, sender=InModel)
+post_save.connect(create_output, sender=Input)

@@ -1,14 +1,11 @@
 {% extends "LifeCheqApp/base.html" %}
 {% load crispy_forms_tags %}
 
-
 {% block content %}
 
-<div class="container">
-  <div class="card mb-2">
-    <h4 class="card-header">    
-    </h4>
-    <div class="card-body">
+<div class="w-100 p-3"  style="background:rgba(122, 113, 112, 0.5)">
+  <div  >
+    <div class="w-50 p-8" class="card-body">
       <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}        
