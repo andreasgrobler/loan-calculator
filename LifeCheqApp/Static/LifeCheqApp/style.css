@@ -1,18 +1,22 @@
-.btn > #overwrite-btn {
-   background-color : rgba(244, 88,77,0.8);
-   border: rgb(244, 88,77);
+/* #overwrite-container {
+   background-image: linear-gradient(to bottom, rgba(242,89,82,1),  rgba(242,89,82,0.75));
+} */
+
+#overwrite-button {
+   border: rgba(242,89,82,1);
+   background: rgba(242,89,82,0.9);
 }
 
-.asteriskField {
-   display: none;
+#overwrite-button:hover {
+   border: rgba(242,89,82,1);
+   background: rgba(242,89,82,0.75);
 }
 
-td #result {
-   color: rgb(255, 255, 255);
-   background-color: rgb(244, 88,77);
+#overwrite-nav-link-active {
+   border: rgba(242,89,82,1);
+   background: rgba(242,89,82,0.9);
 }
 
-#result {
-   color: rgb(244, 88,77);
-   
+#overwrite-nav-link {
+   color: rgba(242,89,82,1);
 }

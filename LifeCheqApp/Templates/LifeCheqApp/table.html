@@ -1,18 +1,16 @@
 {% extends "LifeCheqApp/base.html" %}
-{% load humanize %}
-{{ floatvalue|floatformat:2 }}
-
 {% block content %}
+{% load humanize %}
  
 <div class="container-fluid">
-  <div class="card mb-2">
+  <div class="card mb-0">
     <div class="card-header">   
     <ul class="nav nav-pills card-header-pills">
         <li class="nav-object">
-          <a class="nav-link active" href="#">Active</a>
+          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
         </li>
         <li class="nav-object">
-          <a class="nav-link" href="#">Link</a>
+          <a id="overwrite-nav-link" class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-object">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

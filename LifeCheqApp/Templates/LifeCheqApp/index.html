@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="jumbotron jumbotron-fluid" style="background:rgba(122, 113, 112, 0.5) !important">
+<div id="overwrite-container" class="jumbotron jumbotron-fluid" >
   <div class="container">
     <img src="{% static "LifeCheqApp/lifecheq.svg" %}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
     <h1 class="display-3" style="text-align: center; color: white;">Loan Calculator</h1>
@@ -11,7 +11,8 @@
     <p class="lead">Determine the monthly payment required to service a loan and keep track of all your outstanding debts! </p>
     <hr class="my-4">
     <p class="lead">
-      <a id="overwrite-btn" class="btn btn-primary btn-lg" href="{% url 'LifeCheqApp:input' %}" role="button">Calculate</a>
+      <a id="overwrite-button" class="btn btn-primary btn-lg" href="{% url 'LifeCheqApp:input' %}" role="button">Register</a>
+      <a id="overwrite-button" class="btn btn-primary btn-lg" href="{% url 'LifeCheqApp:input' %}" role="button">Login</a>
     </p>
   </div>
 </div>
@@ -19,3 +20,4 @@
 {% endblock content %}
 
 
+style="background:rgba(122, 113, 112, 0.5) !important"

@@ -1,11 +1,24 @@
 {% extends "LifeCheqApp/base.html" %}
 {% load crispy_forms_tags %}
-
+{% load static%}
 {% block content %}
 
-<div class="w-100 p-3"  style="background:rgba(122, 113, 112, 0.5)">
-  <div  >
-    <div class="w-50 p-8" class="card-body">
+<div class="container">
+  <div class="card mb-2">
+    <div class="card-header" >   
+    <ul  class="nav nav-pills card-header-pills">
+        <li class="nav-object">
+          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
+        </li>
+        <li  class="nav-object">
+          <a id="overwrite-nav-link" class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-object">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body w-100">
       <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}        

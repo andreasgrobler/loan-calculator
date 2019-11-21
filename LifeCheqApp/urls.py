@@ -6,7 +6,7 @@ app_name = 'LifeCheqApp'
 urlpatterns = [
     path('', views.index, name='index'),
     path('input/', views.inputView, name='input'),
-    path('output/loan', views.outputView, name='output'),
+    path('output/<int:loan_number>', views.outputView, name='output'),
     path('output/table-<int:loan_number>', views.outputTable, name='table'),
     path('output/all', views.outputsView, name='outputs'),
     path('admin/', admin.site.urls),

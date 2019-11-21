@@ -1,12 +1,23 @@
 {% extends "LifeCheqApp/base.html" %}
 {% block content %}
+{% load static%}
  
 <div class="container-fluid">
-    
+    <div class="card-header">   
+    <ul class="nav nav-pills card-header-pills">
+        <li class="nav-object">
+          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
+        </li>
+        <li class="nav-object">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-object">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
   {% for object in objects %}
     
-    <div class="container-fluid">
-    <div class="card mb-4">
     <h6 class="card-header">   
       Quote |  {{ object.id }} prepared for {{ user}}
     </h6>
