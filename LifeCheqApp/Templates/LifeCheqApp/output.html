@@ -5,62 +5,67 @@
 
 <div class="container-fluid">
     <div class="card mb-2" class="span8 offset4">
-     <div class="card-header">   
-    <ul class="nav nav-pills card-header-pills">
+      <div class="card-header">   
+      <ul  class="nav nav-pills ">
         <li class="nav-object">
-          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
         </li>
         <li class="nav-object">
-          <a id="overwrite-nav-link" class="nav-link" href="#">Link</a>
+            <a id="overwrite-nav-link-active" class="nav-link active" href="{% url 'LifeCheqApp:output' object.loan_number %}">Output</a>
         </li>
         <li class="nav-object">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:table' object.loan_number%}">Table</a>
+        </li>
+        <li class="nav-object">
+            <a  id="overwrite-nav-link" class="nav-link"  href="#">Plot</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link" class="nav-link " href="{% url 'LifeCheqApp:outputs'  %}" tabindex="-1" >All Outputs</a>
         </li>
       </ul>
-    </div>
-
-    <div class="card-body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>{{ object.name_of_loan }} created on {{ object.date_added }} for {{ user }}
-            <tr/>  
-            <tr>
-              <td>Monthly payment due on loan</td>
-              <td id="result">{{ object.payment|floatformat:2 }}</td>
-            </tr>
-            <tr>  
-              <td>Total payments made over lifetime of loan</td>
-              <td>{{ total_payment|floatformat:2 }}</td>
-            </tr>
-            <tr>  
-              <td>Total interest charged over lifetime of loan</td>
-              <td>{{ total_interest|floatformat:2 }}</td>
-            </tr>
-            <tr>  
-              <td>Purchase price of property</td>
-              <td>{{ object.price|floatformat:2 }}</td>
-            </tr>
-            <tr>
-              <td>Deposit paid on property</td>
-              <td>{{ object.deposit|floatformat:2 }}</td>
-            </tr>
-            <tr>
-              <td>Principal of loan</td>
-              <td>{{ object.principal|floatformat:2 }}</td>
-            </tr>
-            <tr>
-              <td>Interest Rate</td>
-              <td>{{ object.interest_rate|floatformat:2 }} %</td>
-            </tr>
-            <tr>
-              <td>Term of loan </td>
-              <td>{{ object.term|floatformat:1 }}</td>
-            </tr>
-          </tbody>
-          {% comment %} <img src="{% static "LifeCheqApp/lifecheq.svg" %}" class="card-img-bottom" alt=""> {% endcomment %}
-        </table>
-    </div>
+      </div>
+      <div class="card-body">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>{{ object.name_of_loan }} created on {{ object.date_added }} for {{ user }}
+              <tr/>  
+              <tr id="result">
+                <td>Monthly payment due on loan</td>
+                <td id="result">{{ object.payment|floatformat:2 }}</td>
+              </tr>
+              <tr>  
+                <td>Total payments made over lifetime of loan</td>
+                <td>{{ total_payment.total|floatformat:2 }}</td>
+              </tr>
+              <tr>  
+                <td>Total interest charged over lifetime of loan</td>
+                <td>{{ total_interest.total|floatformat:2 }}</td>
+              </tr>
+              <tr>  
+                <td>Purchase price of property</td>
+                <td>{{ object.price|floatformat:2 }}</td>
+              </tr>
+              <tr>
+                <td>Deposit paid on property</td>
+                <td>{{ object.deposit|floatformat:2 }}</td>
+              </tr>
+              <tr>
+                <td>Principal of loan</td>
+                <td>{{ object.principal|floatformat:2 }}</td>
+              </tr>
+              <tr>
+                <td>Interest Rate</td>
+                <td>{{ object.interest_rate|floatformat:2 }} %</td>
+              </tr>
+              <tr>
+                <td>Term of loan </td>
+                <td>{{ object.term|floatformat:1 }}</td>
+              </tr>
+            </tbody>
+            {% comment %} <img src="{% static "LifeCheqApp/lifecheq.svg" %}" class="card-img-bottom" alt=""> {% endcomment %}
+          </table>
+      </div>
   </div> 
 </div>
 

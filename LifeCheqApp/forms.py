@@ -6,31 +6,31 @@ from .models import Input
 
 class InputForm(forms.ModelForm):
     name_of_loan = forms.CharField(
-        label='Provide a name for the loan:',
-        widget=forms.TextInput(attrs={'placeholder': 'Home Loan'})
+        label='Name of the loan:',
+        widget=forms.TextInput(attrs={'placeholder': ''})
     )
     
     price = forms.FloatField(
-        label='Please enter the purchase price of the property',
+        label='Enter the purchase price of the property',
         help_text='Do not leave spaces between values and use a decimal point.',
-        widget=forms.TextInput(attrs={'placeholder': '1000000'})
+        widget=forms.TextInput(attrs={'placeholder': ''})
     )
     
     deposit = forms.FloatField(
-        label='Please enter the deposit that will be paid on the property',
+        label='Enter the deposit that will be paid on the property',
         help_text='Do not leave spaces between values and use a decimal point.',
-        widget=forms.TextInput(attrs={'placeholder': '200000'})
+        widget=forms.TextInput(attrs={'placeholder': ''})
     )
     
     interest_rate = forms.FloatField(
         label='Enter the annual interest rate of the loan',
         help_text='Do not indicate this value as a percentage.',
-        widget=forms.TextInput(attrs={'placeholder': '10.25'})
+        widget=forms.TextInput(attrs={'placeholder': ''})
     )
     
     term = forms.FloatField(
         label='Enter the term of the loan in years',
-        widget=forms.TextInput(attrs={'placeholder': '20'})
+        widget=forms.TextInput(attrs={'placeholder': ''})
     )
 
     # def __init__(self, *args, **kwargs):

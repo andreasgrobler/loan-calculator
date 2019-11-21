@@ -1,28 +1,36 @@
 {% extends "LifeCheqApp/base.html" %}
 {% load crispy_forms_tags %}
 {% load static%}
+
 {% block content %}
 
-<div class="container">
+<div class="container-fluid" class="w-100">
   <div class="card mb-2">
-    <div class="card-header" >   
-    <ul  class="nav nav-pills card-header-pills">
+    <div class="card-header" >
+      <ul  class="nav nav-pills ">
         <li class="nav-object">
-          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
-        </li>
-        <li  class="nav-object">
-          <a id="overwrite-nav-link" class="nav-link" href="#">Link</a>
+            <a id="overwrite-nav-link-active" class="nav-link active" href="{% url 'LifeCheqApp:input' %}">Input</a>
         </li>
         <li class="nav-object">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link disabled" href="#">Output</a>
+        </li>
+        <li class="nav-object">
+            <a class="nav-link disabled" href="#">Table</a>
+        </li>
+        <li class="nav-object">
+            <a class="nav-link disabled"  href="#">Plot</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link" class="nav-link " href="{% url 'LifeCheqApp:outputs' %}"  tabindex="-1">All Outputs</a>
         </li>
       </ul>
     </div>
-    <div class="card-body w-100">
+
+  <div class="card-body w-100">
       <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}        
-        <button type="submit">calculate</button>
+        <button id="overwrite-button" class="btn btn-large btn-primary" type="submit">Submit</button >
       </form>
     </div>
   </div>   

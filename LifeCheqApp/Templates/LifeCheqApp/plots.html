@@ -1,12 +1,21 @@
-{% extends "lifecheq_app/base.html" %}
+{% extends "LifeCheqApp/base.html" %}
+
 {% block head %}
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock head %}
 
 {% block content %}
-    {% if object %}
-        <div style="width:600;height:800">
-        {{ plot|safe }}
-        </div>
+    {% if plot %}
+
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div style="width:600;height:800">
+                    {{ plot|safe }}
+                </div >
+            </div>
+        </div> 
+    </div>
+        
     {% endif %}   
 {% endblock content %}

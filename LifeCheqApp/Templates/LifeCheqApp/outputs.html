@@ -3,23 +3,33 @@
 {% load static%}
  
 <div class="container-fluid">
-    <div class="card-header">   
-    <ul class="nav nav-pills card-header-pills">
+    <div class="card mb-2" class="span8 offset4">
+    <div class="card-header"> 
+      <ul  class="nav nav-pills ">
         <li class="nav-object">
-          <a id="overwrite-nav-link-active" class="nav-link active" href="#">Active</a>
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
         </li>
         <li class="nav-object">
-          <a class="nav-link" href="#">Link</a>
+            <a id="overwrite-nav-link" class="nav-link" href="#">Output</a>
         </li>
         <li class="nav-object">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a id="overwrite-nav-link" class="nav-link" href="#">Table</a>
         </li>
-      </ul>
+        <li class="nav-object">
+            <a  id="overwrite-nav-link" class="nav-link"  href="#">Plot</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link-active" class="nav-link active " href="LifeCheqApp:outputs" tabindex="-1" >All Outputs</a>
+        </li>
+      </ul>  
     </div>
+  
   {% for object in objects %}
-    
+
+  <div class="container-fluid">
+    <div class="card mb-2" class="w-75">  
     <h6 class="card-header">   
-      Quote |  {{ object.id }} prepared for {{ user}}
+     Loan {{ object.loan_number }} created on {{ object.date_added }} for {{ user }}
     </h6>
     <div class="card-body">
         <table class="table">
@@ -51,7 +61,8 @@
           </tbody>
         </table>
     </div>
-   </div> 
+   </div>
+   </div>
 </div>
     {% endfor %}
    
