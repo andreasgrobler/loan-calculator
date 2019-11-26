@@ -20,7 +20,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'LifeCheqApp',
-    'LifeCheqUser',
     'bootstrap4',
     'crispy_forms',
     'django.contrib.admin',
@@ -120,3 +119,7 @@ NUMBER_GROUPING = 3
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+import django_heroku 
+
+django_heroku.settings(locals())

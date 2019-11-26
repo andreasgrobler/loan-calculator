@@ -19,7 +19,7 @@ def inputView(request):
         if form.is_valid:
             instance = form.save()
             return redirect(reverse('LifeCheqApp:output', args=(instance.pk,)))
-    context = {'form': form, 'status': 'active'}
+    context = {'form': form}
     return render(request, 'LifeCheqApp/input.html', context)
 
 
