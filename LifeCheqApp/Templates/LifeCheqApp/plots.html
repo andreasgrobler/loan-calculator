@@ -6,15 +6,35 @@
 
 {% block content %}
     {% if plot %}
+    
+    <div class="container-fluid" >
+        <div class="card"><div class="card-header">
+            <ul  class="nav nav-pills ">
+                <li class="nav-object">
+                    <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
+                </li>
+                <li class="nav-object">
+                    <a id="overwrite-nav-link" class="nav-link" href="#">Output</a>
+                </li>
+                <li class="nav-object">
+                    <a id="overwrite-nav-link" class="nav-link" href="#">Table</a>
+                </li>
+                <li class="nav-object">
+                    <a  id="overwrite-nav-link-active" class="nav-link active"  href="#">Plot</a>
+                </li>
+                <li class="nav-object">
+                    <a id="overwrite-nav-link" class="nav-link " href="{% url 'LifeCheqApp:outputs'  %}" tabindex="-1" >All Outputs</a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <div style="width:600;height:800">
-                    {{ plot|safe }}
-                </div >
-            </div>
-        </div> 
+        <div class="card-body">
+            <div style="width:600;height:800">
+                {{ plot|safe }}
+                <h1>{{ record }}</h1>
+            </div >
+        </div>
+    </div> 
     </div>
         
     {% endif %}   

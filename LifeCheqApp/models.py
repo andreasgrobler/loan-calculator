@@ -12,6 +12,7 @@ class Output(models.Model):
     interest_period = models.FloatField()
     principal_period = models.FloatField()
     end_value = models.FloatField()
+        
 
 
 class Input(models.Model):

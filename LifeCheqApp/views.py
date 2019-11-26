@@ -43,10 +43,15 @@ def outputTable(request, loan_number):
     return render(request, 'LifeCheqApp/table.html', context)
 
 
-class Visualisation(TemplateView):
+class Visualisation(TemplateView) :
     template_name = 'LifeCheqApp/plots.html'
 
     def get_context_data(self, **kwargs):
         context = super(Visualisation, self).get_context_data(**kwargs)
         context['plot'] = plots.get_Bar()
+        context['record'] = plots.get_record_number()
         return context
+
+    def get_record_number(self, loan_number):
+        latest_record_id = Input.objects.get(loan_number=loan_number)
+        return latest_record_id
