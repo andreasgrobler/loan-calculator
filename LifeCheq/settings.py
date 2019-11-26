@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'LifeCheqApp',
+    'LifeCheqApp.apps.LifecheqappConfig',
     'bootstrap4',
     'crispy_forms',
     'django.contrib.admin',
@@ -58,6 +58,15 @@ TEMPLATES = [
         },
     },
 ]
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             os.path.join(BASE_DIR, 'templates'),
+#         ],
+#     },
+# ]
 
 WSGI_APPLICATION = 'LifeCheq.wsgi.application'
 
@@ -119,6 +128,16 @@ NUMBER_GROUPING = 3
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 import django_heroku 
 
