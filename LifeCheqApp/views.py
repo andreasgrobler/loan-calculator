@@ -4,6 +4,8 @@ from .models import Input, Output
 from django.db.models import Sum
 from .forms import InputForm
 from . import plots
+import plotly.graph_objects as go
+import plotly.offline as plt
 
 
 def index(request):
@@ -43,15 +45,38 @@ def outputTable(request, loan_number):
     return render(request, 'LifeCheqApp/table.html', context)
 
 
-class Visualisation(TemplateView) :
-    template_name = 'LifeCheqApp/plots.html'
+def plotView(request, loan_number):
 
-    def get_context_data(self, **kwargs):
-        context = super(Visualisation, self).get_context_data(**kwargs)
-        context['plot'] = plots.get_Bar()
-        context['record'] = plots.get_record_number()
-        return context
+    period = list(range(1,int(Input.objects.get(pk = loan_number).term*12)+1))
+    interest = [object.interest_period for object in Output.objects.filter(loan_number = loan_number)] 
+    principal = [object.principal_period for object in Output.objects.filter(loan_number = loan_number)]
+    
+ 
+    fig = go.Figure(data=[ go.Bar(name='Interest', x=period, y=interest, marker_color='rgb(242,89,82)'),
+                    go.Bar(name='Principal', x=period, y=principal, marker_color='rgb(13,196,163)')])
 
-    def get_record_number(self, loan_number):
-        latest_record_id = Input.objects.get(loan_number=loan_number)
-        return latest_record_id
+    fig.update_layout(
+                    title='Interest and Principal payments per period',
+                    yaxis=dict(title='Amount', titlefont_size=16, tickfont_size=14,),
+                    xaxis=dict(title='Period', titlefont_size=16, tickfont_size=14,),
+                    barmode='stack')
+
+    context = {}
+    context['plot'] = plt.plot(fig, output_type='div', include_plotlyjs=False)
+
+    return render(request, 'LifeCheqApp/plot.html', context)
+
+
+# CLASS_BASED PLOTTING VIEW
+# class Visualisation(TemplateView) :
+#     template_name = 'LifeCheqApp/plots.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super(Visualisation, self).get_context_data(**kwargs)
+#         context['plot'] = plots.get_Bar()
+#         context['record'] = plots.get_record_number()
+#         return context
+
+#     def get_record_number(self, loan_number):
+#         latest_record_id = Input.objects.get(loan_number=loan_number)
+#         return latest_record_id

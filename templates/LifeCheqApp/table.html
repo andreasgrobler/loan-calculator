@@ -1,0 +1,52 @@
+{% extends "LifeCheqApp/base.html" %}
+{% block content %}
+{% load humanize %}
+
+<div class="container-fluid">
+  <div class="card mb-0">
+    <div class="card-header">
+            <ul  class="nav nav-pills ">
+        <li class="nav-object">
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link-active" class="nav-link active" href="{% url 'LifeCheqApp:output' object.loan_number %}">Output</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:table' object.loan_number %}">Table</a>
+        </li>
+        <li class="nav-object">
+            <a  id="overwrite-nav-link" class="nav-link"  href="{% url 'LifeCheqApp:plot' object.loan_number %}">Plot</a>
+        </li>
+        <li class="nav-object">
+            <a id="overwrite-nav-link" class="nav-link " href="{% url 'LifeCheqApp:outputs'  %}" tabindex="-1" >All Outputs</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr scope="row">
+            <td>Period</td>
+            <td>Balance at Start</th>
+            <td>Payment</th>
+            <td>Interest paid</th>
+            <td>Principal paid</th>
+            <td>Balance at End</td>
+          </tr> 
+        {% for object in objects %}
+          <tr>
+            <td>{{ object.period|floatformat:0  }}</td>
+            <td>{{ object.begin_value|floatformat:2  }}</td>
+            <td>{{ object.payment_period|floatformat:2  }}</td>
+            <td>{{ object.principal_period|floatformat:2  }}</td>
+            <td>{{ object.interest_period|floatformat:2  }}</td>
+            <td>{{ object.end_value|floatformat:2  }}</td>          
+          </tr>
+        {% endfor %}   
+        </tbody>
+      </table>
+    </div>
+</div>
+
+{% endblock  %}
