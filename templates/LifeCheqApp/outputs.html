@@ -10,13 +10,13 @@
             <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
         </li>
         <li class="nav-object">
-            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:output' object.loan_number%}">Output</a>
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:output' object.loan_number %}">Output</a>
         </li>
         <li class="nav-object">
-            <a id="overwrite-nav-link" class="nav-link" href="#">{% url 'LifeCheqApp:table' %}</a>
+            <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:table' object.loan_number %}"></a>
         </li>
         <li class="nav-object">
-            <a  id="overwrite-nav-link" class="nav-link"  href="#">{% url 'LifeCheqApp:input' %}</a>
+            <a  id="overwrite-nav-link" class="nav-link"  href="{% url 'LifeCheqApp:input' %}"></a>
         </li>
         <li class="nav-object">
             <a id="overwrite-nav-link-active" class="nav-link active " href="LifeCheqApp:outputs" tabindex="-1" >All Outputs</a>
