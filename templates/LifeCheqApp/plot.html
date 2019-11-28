@@ -14,10 +14,10 @@
                     <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:input' %}">Input</a>
                 </li>
                 <li class="nav-object">
-                    <a id="overwrite-nav-link" class="nav-link" href="#">Output</a>
+                    <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:output' nav.loan_number%}">Output</a>
                 </li>
                 <li class="nav-object">
-                    <a id="overwrite-nav-link" class="nav-link" href="#">Table</a>
+                    <a id="overwrite-nav-link" class="nav-link" href="{% url 'LifeCheqApp:table' nav.loan_number%}">Table</a>
                 </li>
                 <li class="nav-object">
                     <a  id="overwrite-nav-link-active" class="nav-link active"  href="#">Plot</a>

@@ -41,6 +41,7 @@ def outputsView(request):
 
 def outputTable(request, loan_number):
     context = {}
+    context['nav'] = Input.objects.get(pk=loan_number)
     context['objects'] = Output.objects.filter(loan_number=loan_number)
     return render(request, 'LifeCheqApp/table.html', context)
 
@@ -63,7 +64,7 @@ def plotView(request, loan_number):
 
     context = {}
     context['plot'] = plt.plot(fig, output_type='div', include_plotlyjs=False)
-
+    context['nav'] = Input.objects.get(pk=loan_number)
     return render(request, 'LifeCheqApp/plot.html', context)
 
 
